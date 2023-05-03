@@ -21,7 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/account/', include(('accounts.apiurls', 'accounts'), namespace='accounts-api')),
+    path('api/v1/account/', include(('accounts.api.apiurls', 'accounts'), namespace='accounts-api')),
+    path('api/v1/account/', include(('accounts.urls', 'accounts'), namespace='accounts-views')),
     path('api/v1/check/', include(('check.apiurls', 'check'), namespace='check-api')),
     path('api/v1/store/', include(('store.apiurls', 'store'), namespace='store-api')),
     path('api/v1/report/', include(('report.apiurls', 'report'), namespace='report-api')),

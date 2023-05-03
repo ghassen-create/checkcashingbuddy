@@ -2,7 +2,7 @@ import django_filters
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 
-from .models import User
+from accounts.models import User
 
 
 class UserFilter(django_filters.FilterSet):
