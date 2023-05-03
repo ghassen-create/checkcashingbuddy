@@ -11,7 +11,6 @@ import ToggleButton from './ToggleButton';
 import routes from 'routes/siteMaps';
 import { capitalize } from 'helpers/utils';
 import NavbarTopDropDownMenus from 'components/navbar/top/NavbarTopDropDownMenus';
-import PurchaseCard from './PurchaseCard';
 import bgNavbar from 'assets/img/generic/bg-navbar.png';
 
 const NavbarVertical = () => {
@@ -110,7 +109,6 @@ const NavbarVertical = () => {
                 </Nav>
               </div>
             )}
-            <PurchaseCard />
           </>
         </div>
       </Navbar.Collapse>
