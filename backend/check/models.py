@@ -3,6 +3,8 @@ from django.db import models
 
 from customer.models import Customer
 
+from store.models import Store
+
 
 # Create your models here.
 class Check(models.Model):
