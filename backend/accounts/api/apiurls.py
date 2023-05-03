@@ -1,6 +1,11 @@
 from rest_framework.routers import DefaultRouter
 
-from .viewsets import RegistrationViewSet, GroupViewSet, PermissionViewSet, UserViewSet
+from .viewsets import (
+    RegistrationViewSet,
+    GroupViewSet,
+    PermissionViewSet,
+    UserViewSet,
+)
 
 router = DefaultRouter()
 router.register("auth/register", RegistrationViewSet, basename="register")

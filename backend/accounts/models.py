@@ -9,15 +9,15 @@ from store.models import Store
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None, **extra_fields):
         if not username:
-            raise ValueError('The Username field must be set')
+            raise ValueError("The Username field must be set")
         user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, username, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
         return self.create_user(username, password, **extra_fields)
 
 
@@ -37,8 +37,8 @@ class User(AbstractUser):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     def __str__(self):
         return self.username
@@ -49,6 +49,7 @@ class User(AbstractUser):
             return self.avatar.url
 
         from django.templatetags.static import static
+
         return static("defaults/avatardefault.jpg")
 
     def has_perm(self, perm, obj=None):
@@ -67,12 +68,24 @@ class User(AbstractUser):
 
     @property
     def get_date_joined(self):
-        return f"{self.date_joined.date()} {self.date_joined.strftime('%H:%M:%S')}" if self.date_joined else ""
+        return (
+            f"{self.date_joined.date()} {self.date_joined.strftime('%H:%M:%S')}"
+            if self.date_joined
+            else ""
+        )
 
     @property
     def get_last_login(self):
-        return f"{self.last_login.date()} {self.last_login.strftime('%H:%M:%S')}" if self.last_login else ""
+        return (
+            f"{self.last_login.date()} {self.last_login.strftime('%H:%M:%S')}"
+            if self.last_login
+            else ""
+        )
 
     @property
     def get_updated_at(self):
-        return f"{self.updated_at.date()} {self.updated_at.strftime('%H:%M:%S')}" if self.updated_at else ""
+        return (
+            f"{self.updated_at.date()} {self.updated_at.strftime('%H:%M:%S')}"
+            if self.updated_at
+            else ""
+        )

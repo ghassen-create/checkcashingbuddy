@@ -3,12 +3,12 @@ from django.db import models
 
 from customer.models import Customer
 
-from store.models import Store
-
 
 # Create your models here.
 class Check(models.Model):
-    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL, related_name='checks')
+    customer = models.ForeignKey(
+        Customer, null=True, on_delete=models.SET_NULL, related_name="checks"
+    )
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     commission = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, default=3)
     front_image = models.ImageField(upload_to='check_images/')
@@ -31,7 +31,11 @@ class Check(models.Model):
     @property
     def net_payment(self):
         if self.commission:
-            return round(float(self.amount) - ((float(self.commission) * float(self.amount)) / 100), 2)
+            return round(
+                float(self.amount)
+                - ((float(self.commission) * float(self.amount)) / 100),
+                2,
+            )
         else:
             return round(float(self.amount) - ((3 * float(self.amount)) / 100), 2)
 

@@ -6,7 +6,7 @@ from report.models import Report
 
 from customer.models import Avatar, DriverLicence, Note, Customer
 
-from store.models import Store, StoreCustomer
+from store.models import Store
 
 
 # Create your views here.
@@ -23,9 +23,7 @@ def filter_user_restrictions(queryset, user):
             )
     if queryset.model is Store:
         if settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
-            queryset = queryset.filter(
-                Q(user=user)
-            )
+            queryset = queryset.filter(Q(user=user))
     if queryset.model is Report:
         if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
             queryset = queryset.filter(

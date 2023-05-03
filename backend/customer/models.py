@@ -70,7 +70,9 @@ class Note(models.Model):
 
 
 class DriverLicence(models.Model):
-    image = models.ImageField(upload_to="passports", null=True, blank=True, default=None)
+    image = models.ImageField(
+        upload_to="passports", null=True, blank=True, default=None
+    )
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     current = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -89,4 +91,8 @@ class DriverLicence(models.Model):
         return self.customer.name if self.customer else ""
 
     def __str__(self):
-        return f"{self.customer.name} passport/DL" if self.customer else f"passport {self.id}"
+        return (
+            f"{self.customer.name} passport/DL"
+            if self.customer
+            else f"passport {self.id}"
+        )

@@ -1,6 +1,6 @@
 import django_filters
 
-from check.models import Check
+from .models import Check
 
 
 class CheckFilter(django_filters.FilterSet):

@@ -8,6 +8,4 @@ router.register("avatar", AvatarViewSet, basename="avatar")
 router.register("note", NoteViewSet, basename="note")
 router.register("driverlicence", DriverLicenceViewSet, basename="driverlicence")
 
-urlpatterns = [
-    *router.urls
-]
+urlpatterns = [*router.urls]

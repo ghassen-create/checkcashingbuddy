@@ -10,10 +10,14 @@ from utils.views import filter_user_restrictions
 
 
 class ReportViewSet(viewsets.ModelViewSet):
-    queryset = Report.objects.order_by('-id')
+    queryset = Report.objects.order_by("-id")
     serializer_class = ReportSerializer
     permission_classes = [ViewAdmin | ViewStore]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = ReportFilter
 
     def get_queryset(self):
@@ -22,8 +26,10 @@ class ReportViewSet(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         response = super().list(request, *args, **kwargs)
-        net_total = sum([r.amount - ((r.commission * r.amount) / 100) for r in self.get_queryset()])
-        total_amount = self.get_queryset().aggregate(Sum('amount'))['amount__sum']
-        response.data['total_amount'] = total_amount
-        response.data['net_total'] = net_total
+        net_total = sum(
+            [r.amount - ((r.commission * r.amount) / 100) for r in self.get_queryset()]
+        )
+        total_amount = self.get_queryset().aggregate(Sum("amount"))["amount__sum"]
+        response.data["total_amount"] = total_amount
+        response.data["net_total"] = net_total
         return response

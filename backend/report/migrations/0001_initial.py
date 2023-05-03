@@ -9,18 +9,34 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('check', '0001_initial'),
+        ("check", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Report',
+            name="Report",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('commission', models.DecimalField(decimal_places=2, max_digits=5)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('cheque', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='reports', to='check.check')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("commission", models.DecimalField(decimal_places=2, max_digits=5)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "cheque",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="reports",
+                        to="check.check",
+                    ),
+                ),
             ],
         ),
     ]

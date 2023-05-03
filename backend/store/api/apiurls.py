@@ -7,6 +7,4 @@ router.register("store", StoreViewSet, basename="store")
 router.register("storecustomer", StoreCustomerViewSet, basename="storecustomer")
 
 
-urlpatterns = [
-    *router.urls
-]
+urlpatterns = [*router.urls]
