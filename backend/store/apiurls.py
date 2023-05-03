@@ -6,6 +6,4 @@ router = DefaultRouter()
 router.register("store", StoreViewSet, basename="store")
 
 
-urlpatterns = [
-    *router.urls
-]
+urlpatterns = [*router.urls]

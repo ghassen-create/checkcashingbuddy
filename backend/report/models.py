@@ -6,7 +6,9 @@ from django.db import models
 class Report(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     commission = models.DecimalField(max_digits=5, decimal_places=2)
-    cheque = models.ForeignKey(Check, null=True, on_delete=models.SET_NULL, related_name='reports')
+    cheque = models.ForeignKey(
+        Check, null=True, on_delete=models.SET_NULL, related_name="reports"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property

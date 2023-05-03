@@ -10,14 +10,20 @@ from utils.permissions import ViewAdmin
 
 from .filters import GroupFilter, PermissionFilter, UserFilter
 from .models import User
-from .serializers import RegistrationSerializer, LoginSerializer, TokenRefreshSerializer, \
-    GroupSerializer, PermissionSerializer, UserSerializer
+from .serializers import (
+    RegistrationSerializer,
+    LoginSerializer,
+    TokenRefreshSerializer,
+    GroupSerializer,
+    PermissionSerializer,
+    UserSerializer,
+)
 
 
 class RegistrationViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     serializer_class = RegistrationSerializer
     permission_classes = (AllowAny,)
-    http_method_names = ['post']
+    http_method_names = ["post"]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -30,17 +36,20 @@ class RegistrationViewSet(viewsets.ModelViewSet, TokenObtainPairView):
             "access": str(refresh.access_token),
         }
 
-        return Response({
-            "customer": serializer.data,
-            "refresh": res["refresh"],
-            "access": res["access"]
-        }, status=status.HTTP_201_CREATED)
+        return Response(
+            {
+                "customer": serializer.data,
+                "refresh": res["refresh"],
+                "access": res["access"],
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
     serializer_class = LoginSerializer
     permission_classes = (AllowAny,)
-    http_method_names = ['post']
+    http_method_names = ["post"]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -55,7 +64,7 @@ class LoginViewSet(viewsets.ModelViewSet, TokenObtainPairView):
 
 class RefreshViewSet(viewsets.ViewSet, TokenRefreshView):
     permission_classes = (AllowAny,)
-    http_method_names = ['post']
+    http_method_names = ["post"]
     serializer_class = TokenRefreshSerializer
 
     def create(self, request, *args, **kwargs):
@@ -73,7 +82,11 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     permission_classes = [ViewAdmin]
     serializer_class = UserSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = UserFilter
 
 
@@ -81,7 +94,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.order_by("-id")
     permission_classes = [ViewAdmin]
     serializer_class = GroupSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = GroupFilter
 
 
@@ -89,5 +106,9 @@ class PermissionViewSet(viewsets.ModelViewSet):
     queryset = Permission.objects.order_by("-id")
     permission_classes = [ViewAdmin]
     serializer_class = PermissionSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = PermissionFilter

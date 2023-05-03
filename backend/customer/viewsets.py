@@ -5,15 +5,24 @@ from .filters import AvatarFilter, NoteFilter, DLFilter, CustomerFilter
 from .models import Avatar, DriverLicence, Note, Customer
 from utils.permissions import ViewAdmin, ViewStore
 
-from .serializers import AvatarSerializer, NoteSerializer, DriverLicenceSerializer, CustomerSerializer
+from .serializers import (
+    AvatarSerializer,
+    NoteSerializer,
+    DriverLicenceSerializer,
+    CustomerSerializer,
+)
 from utils.views import filter_user_restrictions
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
-    queryset = Customer.objects.order_by('-id')
+    queryset = Customer.objects.order_by("-id")
     permission_classes = [ViewAdmin | ViewStore]
     serializer_class = CustomerSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = CustomerFilter
 
     def get_queryset(self):
@@ -25,7 +34,11 @@ class AvatarViewSet(viewsets.ModelViewSet):
     queryset = Avatar.objects.order_by("-id")
     permission_classes = [ViewAdmin | ViewStore]
     serializer_class = AvatarSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = AvatarFilter
 
     def get_queryset(self):
@@ -37,7 +50,11 @@ class NoteViewSet(viewsets.ModelViewSet):
     queryset = Note.objects.order_by("-id")
     permission_classes = [ViewAdmin | ViewStore]
     serializer_class = NoteSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = NoteFilter
 
     def get_queryset(self):
@@ -49,7 +66,11 @@ class DriverLicenceViewSet(viewsets.ModelViewSet):
     queryset = DriverLicence.objects.order_by("-id")
     permission_classes = [ViewAdmin | ViewStore]
     serializer_class = DriverLicenceSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
     filterset_class = DLFilter
 
     def get_queryset(self):

@@ -12,7 +12,11 @@ class StoreViewSet(viewsets.ModelViewSet):
     queryset = Store.objects.order_by("-id")
     serializer_class = StoreSerializer
     permission_classes = [ViewAdmin]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
 
     def get_queryset(self):
         queryset = filter_user_restrictions(super().get_queryset(), self.request.user)

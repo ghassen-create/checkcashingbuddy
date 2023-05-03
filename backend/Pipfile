@@ -18,6 +18,8 @@ django-rest-passwordreset = "*"
 djangorestframework-simplejwt = "*"
 django-import-export = "*"
 django-auditlog = "*"
+pylama = "*"
+pre-commit = "*"
 
 [dev-packages]
 

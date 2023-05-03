@@ -45,4 +45,8 @@ class CheckHistorySerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_timestamp(obj):
-        return f"{obj.timestamp.date()} {obj.timestamp.strftime('%H:%M:%S')}" if obj.timestamp else ""
+        return (
+            f"{obj.timestamp.date()} {obj.timestamp.strftime('%H:%M:%S')}"
+            if obj.timestamp
+            else ""
+        )

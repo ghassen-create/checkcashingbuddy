@@ -1,7 +1,10 @@
 from django.contrib.auth.models import update_last_login, Group, Permission
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
+from rest_framework_simplejwt.serializers import (
+    TokenObtainPairSerializer,
+    TokenRefreshSerializer,
+)
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.state import token_backend
 
@@ -13,7 +16,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'first_name', 'last_name')
+        fields = ("username", "password", "first_name", "last_name")
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -21,15 +24,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(TokenObtainPairSerializer):
-
     def validate(self, attrs):
         data = super().validate(attrs)
 
         refresh = self.get_token(self.user)
 
-        data['customer'] = UserSerializer(self.user).data
-        data['refresh'] = str(refresh)
-        data['access'] = str(refresh.access_token)
+        data["customer"] = UserSerializer(self.user).data
+        data["refresh"] = str(refresh)
+        data["access"] = str(refresh.access_token)
 
         if api_settings.UPDATE_LAST_LOGIN:
             update_last_login(None, self.user)
@@ -47,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ["password"]
-        read_only_field = ['is_active', 'updated_at', 'date_joined']
+        read_only_field = ["is_active", "updated_at", "date_joined"]
 
     @staticmethod
     def get_groups_names(obj):
@@ -73,12 +75,12 @@ class UserSerializer(serializers.ModelSerializer):
 class TokenRefreshSerializer(TokenRefreshSerializer):
     def validate(self, attrs):
         data = super(TokenRefreshSerializer, self).validate(attrs)
-        decoded_payload = token_backend.decode(data['access'], verify=True)
-        user_uid = decoded_payload['user_id']
+        decoded_payload = token_backend.decode(data["access"], verify=True)
+        user_uid = decoded_payload["user_id"]
         # add filter query
 
         obj = get_object_or_404(User, pk=user_uid)
-        data['user'] = UserSerializer(obj).data
+        data["user"] = UserSerializer(obj).data
         groups = []
         perms = []
         for group in obj.groups.all():
@@ -88,7 +90,7 @@ class TokenRefreshSerializer(TokenRefreshSerializer):
             for perm in obj.user_permissions.all():
                 perms.append(perm.codename)
         perms = tuple(perms)
-        data.update({'groups_name': groups, "permissions_name": perms})
+        data.update({"groups_name": groups, "permissions_name": perms})
         return data
 
 

@@ -12,7 +12,7 @@ class CustomerFilter(django_filters.FilterSet):
 
 
 class AvatarFilter(django_filters.FilterSet):
-    customer_id = django_filters.NumberFilter(field_name='customer_id')
+    customer_id = django_filters.NumberFilter(field_name="customer_id")
 
     class Meta:
         model = Avatar
@@ -20,7 +20,7 @@ class AvatarFilter(django_filters.FilterSet):
 
 
 class NoteFilter(django_filters.FilterSet):
-    customer_id = django_filters.NumberFilter(field_name='customer_id')
+    customer_id = django_filters.NumberFilter(field_name="customer_id")
 
     class Meta:
         model = Note
@@ -28,7 +28,7 @@ class NoteFilter(django_filters.FilterSet):
 
 
 class DLFilter(django_filters.FilterSet):
-    customer_id = django_filters.NumberFilter(field_name='customer_id')
+    customer_id = django_filters.NumberFilter(field_name="customer_id")
 
     class Meta:
         model = DriverLicence
