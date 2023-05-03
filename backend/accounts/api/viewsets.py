@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from utils.permissions import ViewAdmin
 
 from .filters import GroupFilter, PermissionFilter, UserFilter
-from .models import User
+from accounts.models import User
 from .serializers import RegistrationSerializer, LoginSerializer, TokenRefreshSerializer, \
     GroupSerializer, PermissionSerializer, UserSerializer
 

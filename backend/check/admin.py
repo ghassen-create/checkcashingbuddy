@@ -6,4 +6,4 @@ from .models import Check
 # Register your models here.
 @admin.register(Check)
 class CheckAdmin(admin.ModelAdmin):
-    list_display = ["customer_username", "amount", "commission"]
+    list_display = ["customer_name", "amount"]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Report
+from report.models import Report
 
 
 class ReportSerializer(serializers.ModelSerializer):

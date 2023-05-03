@@ -21,6 +21,7 @@ django-rest-passwordreset = "*"
 djangorestframework-simplejwt = "*"
 django-import-export = "*"
 django-auditlog = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

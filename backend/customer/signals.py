@@ -1,7 +1,28 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import Avatar, Note, DriverLicence
+from .models import Avatar, Note, DriverLicence, Customer
+from store.models import StoreCustomer
+
+
+@receiver(post_save, sender=Customer)
+def update_avatar_current(sender, instance, created, **kwargs):
+    import inspect
+    user = None
+    try:
+        for frame_record in inspect.stack():
+            if frame_record[3] == 'get_response':
+                request = frame_record[0].f_locals['request']
+                user = request.user if request.user.is_authenticated else None
+                break
+    except Exception as e:
+        pass
+    if created:
+        if user.store_id:
+            StoreCustomer.objects.create(
+                store_id=user.store_id,
+                customer=instance
+            )
 
 
 @receiver(post_save, sender=Avatar)

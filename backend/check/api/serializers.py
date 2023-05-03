@@ -1,12 +1,15 @@
 from auditlog.models import LogEntry
 from rest_framework import serializers
 
-from .models import Check
+from check.models import Check
 
 
 class CheckSerializer(serializers.ModelSerializer):
-    customer_username = serializers.SerializerMethodField()
+    customer_name = serializers.SerializerMethodField()
+    store_name = serializers.SerializerMethodField()
     net_payment = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
+    updated_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Check
@@ -17,8 +20,20 @@ class CheckSerializer(serializers.ModelSerializer):
         return obj.net_payment
 
     @staticmethod
-    def get_customer_username(obj):
-        return obj.customer_username
+    def get_customer_name(obj):
+        return obj.customer_name
+
+    @staticmethod
+    def get_store_name(obj):
+        return obj.store_name
+
+    @staticmethod
+    def get_created_at(obj):
+        return obj.get_created_at
+
+    @staticmethod
+    def get_updated_at(obj):
+        return obj.get_updated_at
 
 
 class CheckHistorySerializer(serializers.ModelSerializer):

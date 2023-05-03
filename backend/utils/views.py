@@ -6,20 +6,20 @@ from report.models import Report
 
 from customer.models import Avatar, DriverLicence, Note, Customer
 
-from store.models import Store
+from store.models import Store, StoreCustomer
 
 
 # Create your views here.
 def filter_user_restrictions(queryset, user):
-    if queryset.model is Check or queryset.model is Avatar or queryset.model is Note or queryset.model is DriverLicence:
+    if queryset.model is Check:
         if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
             queryset = queryset.filter(
-                Q(customer__store_id=user.store_id)
+                Q(store_id=user.store_id)
             )
     if queryset.model is Customer:
         if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
             queryset = queryset.filter(
-                Q(store_id=user.store_id)
+                Q(storecustomer__store_id=user.store_id)
             )
     if queryset.model is Store:
         if settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
@@ -29,7 +29,17 @@ def filter_user_restrictions(queryset, user):
     if queryset.model is Report:
         if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
             queryset = queryset.filter(
-                Q(cheque__customer__store_id=user.store_id)
+                Q(cheque__store_id=user.store_id)
+            )
+    if queryset.model is StoreCustomer:
+        if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
+            queryset = queryset.filter(
+                Q(store_id=user.store_id)
+            )
+    if queryset.model is Avatar or queryset.model is Note or queryset.model is DriverLicence:
+        if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
+            queryset = queryset.filter(
+                Q(customer__storecustomer__store_id=user.store_id)
             )
 
     return queryset

@@ -2,7 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 
 from .filters import AvatarFilter, NoteFilter, DLFilter, CustomerFilter
-from .models import Avatar, DriverLicence, Note, Customer
+from customer.models import Avatar, DriverLicence, Note, Customer
 from utils.permissions import ViewAdmin, ViewStore
 
 from .serializers import AvatarSerializer, NoteSerializer, DriverLicenceSerializer, CustomerSerializer

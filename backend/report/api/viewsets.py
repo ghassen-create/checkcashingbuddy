@@ -4,7 +4,7 @@ from rest_framework import viewsets, filters
 from utils.permissions import ViewAdmin, ViewStore
 
 from .filters import ReportFilter
-from .models import Report
+from report.models import Report
 from .serializers import ReportSerializer
 from utils.views import filter_user_restrictions
 

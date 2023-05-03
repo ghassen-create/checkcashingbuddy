@@ -1,12 +1,11 @@
 from rest_framework import serializers
 
-from .models import Avatar, Note, DriverLicence, Customer
+from customer.models import Avatar, Note, DriverLicence, Customer
 
 
 class CustomerSerializer(serializers.ModelSerializer):
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    store_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Customer
@@ -19,10 +18,6 @@ class CustomerSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_updated_at(obj):
         return obj.get_updated_at
-
-    @staticmethod
-    def get_store_name(obj):
-        return obj.store_name
 
 
 class AvatarSerializer(serializers.ModelSerializer):

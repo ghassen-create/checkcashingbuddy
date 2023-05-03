@@ -6,7 +6,7 @@ router = DefaultRouter()
 router.register("customer", CustomerViewSet, basename="customer")
 router.register("avatar", AvatarViewSet, basename="avatar")
 router.register("note", NoteViewSet, basename="note")
-router.register("passport", DriverLicenceViewSet, basename="passport")
+router.register("driverlicence", DriverLicenceViewSet, basename="driverlicence")
 
 urlpatterns = [
     *router.urls

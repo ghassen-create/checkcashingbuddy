@@ -20,12 +20,11 @@ def create_report_instance(sender, instance, created, **kwargs):
         pass
     if created:
         if user.store and settings.STORE_GROUP_NAME in [obj.name for obj in user.groups.all()]:
-            instance.commission = user.store.commission if user.store.commission else 6
-            instance.scanned_by_store = True
+            instance.store_id = user.store_id
+            instance.commission = user.store.commission if user.store.commission else 3
             instance.save()
         elif settings.ADMIN_GROUP_NAME in [obj.name for obj in user.groups.all()]:
-            instance.commission = instance.commission if instance.commission else 6
-            instance.scanned_by_admin = True
+            instance.commission = instance.commission if instance.commission else 3
             instance.save()
         Report.objects.create(
             cheque=instance,

@@ -1,7 +1,5 @@
 from django.db import models
 
-from store.models import Store
-
 
 # Create your models here.
 class Customer(models.Model):
@@ -10,7 +8,6 @@ class Customer(models.Model):
     address_1 = models.CharField(max_length=100, null=True, blank=True)
     address_2 = models.CharField(max_length=100, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    store = models.ForeignKey(Store, null=True, blank=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -21,10 +18,6 @@ class Customer(models.Model):
     @property
     def get_updated_at(self):
         return f"{self.updated_at.date()} {self.updated_at.strftime('%H:%M:%S')}"
-
-    @property
-    def store_name(self):
-        return self.store.name if self.store else ""
 
     def __str__(self):
         return self.name

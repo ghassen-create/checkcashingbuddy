@@ -5,7 +5,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, Toke
 from rest_framework_simplejwt.settings import api_settings
 from rest_framework_simplejwt.state import token_backend
 
-from .models import User
+from accounts.models import User
 
 
 class RegistrationSerializer(serializers.ModelSerializer):

@@ -1,14 +1,16 @@
 import django_filters
 
-from .models import Avatar, Note, DriverLicence, Customer
+from customer.models import Avatar, Note, DriverLicence, Customer
 
 
 class CustomerFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(field_name="name", lookup_expr="icontains")
+    address_1 = django_filters.CharFilter(field_name="address_1", lookup_expr="icontains")
+    birth_date = django_filters.DateFilter(field_name="birth_date")
 
     class Meta:
         model = Customer
-        fields = ["name"]
+        fields = "__all__"
 
 
 class AvatarFilter(django_filters.FilterSet):

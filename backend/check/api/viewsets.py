@@ -3,7 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 
 from .filters import CheckFilter, CheckHistoryFilter
-from .models import Check
+from check.models import Check
 from utils.permissions import ViewAdmin, ViewStore
 
 from .serializers import CheckSerializer, CheckHistorySerializer
