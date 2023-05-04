@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from .models import Avatar, Note, DriverLicence, Customer
+from .models import CustomerAvatar, CustomerNote, CustomerDriverLicence, Customer
 from store.models import StoreCustomer
 
 
@@ -25,10 +25,10 @@ def update_avatar_current(sender, instance, created, **kwargs):
             )
 
 
-@receiver(post_save, sender=Avatar)
+@receiver(post_save, sender=CustomerAvatar)
 def update_avatar_current(sender, instance, created, **kwargs):
     if created:
-        avatars = Avatar.objects.filter(customer=instance.customer)
+        avatars = CustomerAvatar.objects.filter(customer=instance.customer)
         for avatar in avatars:
             avatar.current = False
             avatar.save()
@@ -36,10 +36,10 @@ def update_avatar_current(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(post_save, sender=Note)
+@receiver(post_save, sender=CustomerNote)
 def update_last_note(sender, instance, created, **kwargs):
     if created:
-        notes = Note.objects.filter(customer=instance.customer)
+        notes = CustomerNote.objects.filter(customer=instance.customer)
         for note in notes:
             note.last = False
             note.save()
@@ -47,10 +47,10 @@ def update_last_note(sender, instance, created, **kwargs):
         instance.save()
 
 
-@receiver(post_save, sender=DriverLicence)
+@receiver(post_save, sender=CustomerDriverLicence)
 def update_last_dl(sender, instance, created, **kwargs):
     if created:
-        dls = DriverLicence.objects.filter(customer=instance.customer)
+        dls = CustomerDriverLicence.objects.filter(customer=instance.customer)
         for dl in dls:
             dl.current = False
             dl.save()

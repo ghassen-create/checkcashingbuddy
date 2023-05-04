@@ -22,7 +22,7 @@ class CheckViewSet(viewsets.ModelViewSet):
         return queryset
 
 
-class CheckHistoryViewSet(viewsets.ModelViewSet):
+class CheckLogsViewSet(viewsets.ModelViewSet):
     queryset = LogEntry.objects.all()
     serializer_class = CheckHistorySerializer
     permission_classes = [ViewAdmin]

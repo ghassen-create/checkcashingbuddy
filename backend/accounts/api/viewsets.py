@@ -27,7 +27,7 @@ class LoginAPIView(ObtainAuthToken):
 
 class RegistrationViewSet(viewsets.ModelViewSet):
     serializer_class = RegistrationSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (ViewAdmin,)
     http_method_names = ['post']
 
 

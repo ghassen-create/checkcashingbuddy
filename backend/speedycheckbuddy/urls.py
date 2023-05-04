@@ -23,10 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/account/', include(('accounts.api.apiurls', 'accounts'), namespace='accounts-api')),
     path('api/v1/account/', include(('accounts.urls', 'accounts'), namespace='accounts-views')),
-    path('api/v1/check/', include(('check.apiurls', 'check'), namespace='check-api')),
-    path('api/v1/store/', include(('store.apiurls', 'store'), namespace='store-api')),
-    path('api/v1/report/', include(('report.apiurls', 'report'), namespace='report-api')),
-    path('api/v1/customer/', include(('customer.apiurls', 'customer'), namespace='customer-api')),
+    path('api/v1/check/', include(('check.api.apiurls', 'check'), namespace='check-api')),
+    path('api/v1/store/', include(('store.api.apiurls', 'store'), namespace='store-api')),
+    path('api/v1/report/', include(('report.api.apiurls', 'report'), namespace='report-api')),
+    path('api/v1/customer/', include(('customer.api.apiurls', 'customer'), namespace='customer-api')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

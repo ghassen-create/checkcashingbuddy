@@ -1,10 +1,10 @@
 from rest_framework.routers import DefaultRouter
 
-from .viewsets import CheckViewSet, CheckHistoryViewSet
+from .viewsets import CheckViewSet, CheckLogsViewSet
 
 router = DefaultRouter()
 router.register("check", CheckViewSet, basename="check")
-router.register("history", CheckHistoryViewSet, basename="history")
+router.register("history", CheckLogsViewSet, basename="history")
 
 urlpatterns = [
     *router.urls,
