@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_celery_beat',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
     'auditlog',
     'accounts',
@@ -108,31 +108,32 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": f"redis://{os.environ.get('REDIS_IP')}:{os.environ.get('REDIS_PORT')}/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        },
-        "KEY_PREFIX": "example"
-    }
-}
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': os.environ.get("POSTGRES_DB_NAME"),
+
+        'USER': os.environ.get("POSTGRES_USERNAME"),
+
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
+
+        'HOST': os.environ.get("POSTGRES_HOSTNAME_DEFAULT"),
+
+        'PORT': os.environ.get("POSTGRES_PORT"),
+
     }
+
 }
 
 
 ADMIN_GROUP_NAME = "Admin"
 STORE_GROUP_NAME = "Store"
-CUSTOMER_GROUP_NAME = "Customer"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -175,14 +176,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BEAT_SCHEDULE = {
-
-}
-CELERY_BROKER_URL = f'redis://{os.environ.get("REDIS_IP")}:{os.environ.get("REDIS_PORT")}'
-CELERY_RESULT_BACKEND = f'redis://{os.environ.get("REDIS_IP")}:{os.environ.get("REDIS_PORT")}'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
 # AWS SES
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
@@ -220,7 +213,6 @@ else:
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',

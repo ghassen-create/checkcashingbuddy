@@ -1,11 +1,7 @@
-from django.contrib.auth.models import update_last_login, Group, Permission
-from rest_framework import serializers
-from rest_framework.generics import get_object_or_404
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer, TokenRefreshSerializer
-from rest_framework_simplejwt.settings import api_settings
-from rest_framework_simplejwt.state import token_backend
-
 from accounts.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import Group, Permission
+from rest_framework import serializers
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -20,21 +16,42 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(TokenObtainPairSerializer):
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField(
+        label="Username",
+        write_only=True
+    )
+    password = serializers.CharField(
+        label="Password",
+        style={'input_type': 'password'},
+        trim_whitespace=False,
+        write_only=True
+    )
+    token = serializers.CharField(
+        label="Token",
+        read_only=True
+    )
 
     def validate(self, attrs):
-        data = super().validate(attrs)
+        username = attrs.get('username')
+        password = attrs.get('password')
 
-        refresh = self.get_token(self.user)
+        if username and password:
+            user = authenticate(request=self.context.get('request'),
+                                username=username, password=password)
 
-        data['customer'] = UserSerializer(self.user).data
-        data['refresh'] = str(refresh)
-        data['access'] = str(refresh.access_token)
+            # The authenticate call simply returns None for is_active=False
+            # users. (Assuming the default ModelBackend authentication
+            # backend.)
+            if not user:
+                msg = 'Unable to log in with provided credentials.'
+                raise serializers.ValidationError(msg, code='authorization')
+        else:
+            msg = 'Must include "username" and "password".'
+            raise serializers.ValidationError(msg, code='authorization')
 
-        if api_settings.UPDATE_LAST_LOGIN:
-            update_last_login(None, self.user)
-
-        return data
+        attrs['user'] = user
+        return attrs
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -68,28 +85,6 @@ class UserSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_store_name(obj):
         return obj.store_name
-
-
-class TokenRefreshSerializer(TokenRefreshSerializer):
-    def validate(self, attrs):
-        data = super(TokenRefreshSerializer, self).validate(attrs)
-        decoded_payload = token_backend.decode(data['access'], verify=True)
-        user_uid = decoded_payload['user_id']
-        # add filter query
-
-        obj = get_object_or_404(User, pk=user_uid)
-        data['user'] = UserSerializer(obj).data
-        groups = []
-        perms = []
-        for group in obj.groups.all():
-            groups.append(group.name)
-            for perm in group.permissions.all():
-                perms.append(perm.codename)
-            for perm in obj.user_permissions.all():
-                perms.append(perm.codename)
-        perms = tuple(perms)
-        data.update({'groups_name': groups, "permissions_name": perms})
-        return data
 
 
 class GroupSerializer(serializers.ModelSerializer):
