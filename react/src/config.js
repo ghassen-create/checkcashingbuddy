@@ -12,4 +12,5 @@ export const settings = {
   navbarStyle: 'transparent'
 };
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { version, navbarBreakPoint, topNavbarBreakpoint, settings };

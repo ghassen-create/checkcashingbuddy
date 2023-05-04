@@ -40,7 +40,7 @@ const useToggleStylesheet = (isRTL, isDark, configDispatch) => {
     configDispatch({
       type: 'REFRESH'
     });
-  }, [isDark]);
+  }, [isDark, configDispatch]);
 
   return { isLoaded };
 };

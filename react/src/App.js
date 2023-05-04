@@ -35,7 +35,7 @@ const App = () => {
       HTMLClassList.add('double-top-nav-layout');
     }
     return () => HTMLClassList.remove('double-top-nav-layout');
-  }, [navbarPosition]);
+  }, [navbarPosition, HTMLClassList]);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
