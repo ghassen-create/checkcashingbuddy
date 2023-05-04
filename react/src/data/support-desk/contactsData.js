@@ -20,7 +20,7 @@ export const contacts = [
       round: 'circle'
     },
     phone: '+61 1800 861 302',
-    report: 'Analysis of the Top Customers',
+    report: 'Analysis of the Top Store',
     subscription: contactBadges[0],
     social: 'Facebook'
   },
@@ -184,7 +184,7 @@ export const contacts = [
       round: 'circle'
     },
     phone: '+61 1800 861 302',
-    report: 'Analysis of the Top Customers',
+    report: 'Analysis of the Top Store',
     subscription: contactBadges[0],
     social: 'Facebook'
   },

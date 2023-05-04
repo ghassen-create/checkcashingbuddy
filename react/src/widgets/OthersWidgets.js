@@ -5,7 +5,7 @@ import BillingHeader from 'components/app/e-commerce/billing/BillingHeader';
 import DepositeStatus from 'components/dashboards/saas/DepositeStatus';
 import EventFooter from 'components/app/events/create-an-event/EventFooter';
 import BirthdayNotice from 'components/app/social/feed/BirthdatNotice';
-import DangerZone from 'components/pages/user/settings/DangerZone';
+import DangerZone from 'pages/Users/settings/DangerZone';
 import GreetingCard from 'components/dashboards/e-commerce/greetings/GreetingCard';
 import { Card, Col, Row } from 'react-bootstrap';
 import { notifications } from 'data/dashboard/ecom';

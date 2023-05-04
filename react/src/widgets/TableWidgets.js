@@ -14,7 +14,7 @@ import {
   runningProjects
 } from 'data/dashboard/projectManagement';
 import { transactionSummary } from 'data/dashboard/saas';
-import Experience from 'components/pages/user/Experience';
+import Experience from 'pages/Users/Experience';
 import experiences from 'data/experiences';
 import ToDoList from 'components/dashboards/project-management/ToDoList';
 import MemberInfo from 'components/dashboards/project-management/MemberInfo';

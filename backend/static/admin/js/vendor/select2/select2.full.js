@@ -161,7 +161,7 @@ var requirejs, require, define;
                     break;
                 }
 
-                //Check for a star map match, but just hold on to it,
+                //Checks for a star map match, but just hold on to it,
                 //if there is a shorter segment match later in a matching
                 //config, then favor over this star map.
                 if (!foundStarMap && starMap && starMap[nameSegment]) {
@@ -720,7 +720,7 @@ S2.define('select2/utils',[
     var overflowX = el.style.overflowX;
     var overflowY = el.style.overflowY;
 
-    //Check both x and y declarations
+    //Checks both x and y declarations
     if (overflowX === overflowY &&
         (overflowY === 'hidden' || overflowY === 'visible')) {
       return false;
@@ -944,7 +944,7 @@ S2.define('select2/results',[
 
     var $selected = $options.filter('[aria-selected=true]');
 
-    // Check if there are any selected options
+    // Checks if there are any selected options
     if ($selected.length > 0) {
       // If there are selected options, highlight the first
       $selected.first().trigger('mouseenter');
@@ -3625,7 +3625,7 @@ S2.define('select2/data/ajax',[
         var results = self.processResults(data, params);
 
         if (self.options.get('debug') && window.console && console.error) {
-          // Check to make sure that the response included a `results` key.
+          // Checks to make sure that the response included a `results` key.
           if (!results || !results.results || !$.isArray(results.results)) {
             console.error(
               'Select2: The AJAX results did not return an array in the ' +
@@ -3819,7 +3819,7 @@ S2.define('select2/data/tokenizer',[
       // Normalize the data object so we can use it for checks
       var item = self._normalizeItem(data);
 
-      // Check if the data object already exists as a tag
+      // Checks if the data object already exists as a tag
       // Select it if it doesn't
       var $existingOptions = self.$element.find('option').filter(function () {
         return $(this).val() === item.id;
@@ -5038,7 +5038,7 @@ S2.define('select2/defaults',[
         // This is required as we modify the object to remove any non-matches
         var match = $.extend(true, {}, data);
 
-        // Check each child of the option
+        // Checks each child of the option
         for (var c = data.children.length - 1; c >= 0; c--) {
           var child = data.children[c];
 
@@ -5062,7 +5062,7 @@ S2.define('select2/defaults',[
       var original = stripDiacritics(data.text).toUpperCase();
       var term = stripDiacritics(params.term).toUpperCase();
 
-      // Check if the text contains the term
+      // Checks if the text contains the term
       if (original.indexOf(term) > -1) {
         return data;
       }
@@ -6366,7 +6366,7 @@ S2.define('select2/compat/matcher',[
         for (var c = data.children.length - 1; c >= 0; c--) {
           var child = data.children[c];
 
-          // Check if the child object matches
+          // Checks if the child object matches
           // The old matcher returned a boolean true or false
           var doesMatch = matcher(params.term, child.text, child);
 
@@ -6780,7 +6780,7 @@ S2.define('jquery.select2',[
           ret = instance[options].apply(instance, args);
         });
 
-        // Check if we should be returning `this`
+        // Checks if we should be returning `this`
         if ($.inArray(options, thisMethods) > -1) {
           return this;
         }

@@ -1,24 +1,24 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AuthSimpleLayout from '../layouts/AuthSimpleLayout';
 import MainLayout from '../layouts/MainLayout';
 import ErrorLayout from '../layouts/ErrorLayout';
 
-import Starter from 'components/pages/Starter';
-import Profile from 'components/pages/user/profile/Profile';
-import Settings from 'components/pages/user/settings/Settings';
-import AdvanceTableExamples from 'components/doc-components/AdvanceTableExamples';
-import Customers from 'components/app/e-commerce/customers/Customers';
+import Settings from '../pages/Users/settings/Settings';
+import Customers from '../pages/Customers/Customers';
+import Users from '../pages/Users/Users';
 
-import Error404 from 'components/errors/Error404';
+import Error404 from '../pages/errors/Error404';
 
-import CardLogin from 'components/authentication/card/Login';
-import Logout from 'components/authentication/card/Logout';
-import CardRegistration from 'components/authentication/card/Registration';
-import CardForgetPassword from 'components/authentication/card/ForgetPassword';
-import CardConfirmMail from 'components/authentication/card/ConfirmMail';
-import CardPasswordReset from 'components/authentication/card/PasswordReset';
-import CardLockScreen from 'components/authentication/card/LockScreen';
+import CardLogin from '../pages/authentication/card/Login';
+import Logout from '../pages/authentication/card/Logout';
+import CardForgetPassword from '../pages/authentication/card/ForgetPassword';
+import CardConfirmMail from '../pages/authentication/card/ConfirmMail';
+import CardPasswordReset from '../pages/authentication/card/PasswordReset';
+import CardLockScreen from '../pages/authentication/card/LockScreen';
+import Check from "../pages/Checks/Checks/Check";
+import CheckLogs from "../pages/Checks/Logs/CheckLogs";
+import Store from "../pages/Store/Store";
+import Report from "../pages/Report/Report";
 
 const FalconRoutes = () => {
   return (
@@ -31,10 +31,6 @@ const FalconRoutes = () => {
 
       {/*- ------------- Card ---------------------------  */}
       <Route path="/login" element={<CardLogin />} />
-      <Route
-        path="/register"
-        element={<CardRegistration />}
-      />
       <Route path="/logout" element={<Logout />} />
       <Route
         path="/forgot-password"
@@ -59,15 +55,14 @@ const FalconRoutes = () => {
 
       <Route element={<MainLayout />}>
         <Route path="/customer" element={<Customers />} />
-        <Route path="/user" element={<Customers />} />
+        <Route path="/user" element={<Users />} />
+        <Route path="/check" element={<Check />} />
+        <Route path="/check-logs" element={<CheckLogs />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/report" element={<Report />} />
 
         {/*Pages*/}
-        <Route path="pages/starter" element={<Starter />} />
         <Route path="/settings" element={<Settings />} />
-        <Route
-          path="tables/advance-tables"
-          element={<AdvanceTableExamples />}
-        />
       </Route>
 
       {/* //--- MainLayout end  */}

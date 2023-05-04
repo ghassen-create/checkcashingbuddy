@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfirmMailContent from 'components/authentication/ConfirmMailContent';
+import ConfirmMailContent from '../ConfirmMailContent';
 import AuthCardLayout from 'layouts/AuthCardLayout';
 
 const ConfirmMail = () => (

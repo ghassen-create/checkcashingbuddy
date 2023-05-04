@@ -14,7 +14,7 @@ const autoCompleteInitialItem = [
   {
     id: 2,
     url: '/e-commerce/customers',
-    breadCrumbTexts: ['E-commerce ', ' Customers'],
+    breadCrumbTexts: ['E-commerce ', ' Store'],
     catagories: 'recentlyBrowsedItems'
   },
   {

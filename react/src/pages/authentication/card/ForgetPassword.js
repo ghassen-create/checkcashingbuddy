@@ -1,5 +1,5 @@
 import React from 'react';
-import ForgetPasswordForm from 'components/authentication/ForgetPasswordForm';
+import ForgetPasswordForm from '../ForgetPasswordForm';
 import AuthCardLayout from 'layouts/AuthCardLayout';
 
 const ForgetPassword = () => {

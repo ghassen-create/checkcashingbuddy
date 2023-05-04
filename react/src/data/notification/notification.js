@@ -20,7 +20,7 @@ export const notifications = [
       size: 'xl'
     },
     children:
-      'Announcing the winners of the <strong>The only book awards</strong> decided by you, the readers. Check out the champions and runners-up in all 21 categories now!',
+      'Announcing the winners of the <strong>The only book awards</strong> decided by you, the readers. Checks out the champions and runners-up in all 21 categories now!',
     time: 'Just Now',
     emoji: '📢',
     className: 'rounded-0 border-x-0 border-300 border-bottom-0',

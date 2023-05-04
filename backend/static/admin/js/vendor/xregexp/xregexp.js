@@ -532,7 +532,7 @@ module.exports = function(XRegExp) {
             var isNegated = match[1] === 'P' || !!match[2];
             // Switch from BMP (0-FFFF) to astral (0-10FFFF) mode via flag A
             var isAstralMode = flags.indexOf('A') > -1;
-            // Token lookup name. Check `[4]` first to avoid passing `undefined` via `\p{}`
+            // Token lookup name. Checks `[4]` first to avoid passing `undefined` via `\p{}`
             var slug = normalize(match[4] || match[3]);
             // Token data object
             var item = unicode[slug];
@@ -2780,9 +2780,9 @@ var nativeTokens = {
 };
 // Any backreference or dollar-prefixed character in replacement strings
 var replacementToken = /\$(?:{([\w$]+)}|(\d\d?|[\s\S]))/g;
-// Check for correct `exec` handling of nonparticipating capturing groups
+// Checks for correct `exec` handling of nonparticipating capturing groups
 var correctExecNpcg = nativ.exec.call(/()??/, '')[1] === undefined;
-// Check for ES6 `flags` prop support
+// Checks for ES6 `flags` prop support
 var hasFlagsProp = /x/.flags !== undefined;
 // Shortcut to `Object.prototype.toString`
 var toString = {}.toString;
@@ -2802,9 +2802,9 @@ function hasNativeFlag(flag) {
     }
     return isSupported;
 }
-// Check for ES6 `u` flag support
+// Checks for ES6 `u` flag support
 var hasNativeU = hasNativeFlag('u');
-// Check for ES6 `y` flag support
+// Checks for ES6 `y` flag support
 var hasNativeY = hasNativeFlag('y');
 // Tracker for known flags, including addon flags
 var registeredFlags = {
@@ -3323,7 +3323,7 @@ function XRegExp(pattern, flags) {
         var pos = 0;
         var result;
 
-        // Check for flag-related errors, and strip/apply flags in a leading mode modifier
+        // Checks for flag-related errors, and strip/apply flags in a leading mode modifier
         var applied = prepareFlags(pattern, flags);
         var appliedPattern = applied.pattern;
         var appliedFlags = applied.flags;
@@ -3332,7 +3332,7 @@ function XRegExp(pattern, flags) {
         // `appliedPattern.length` may change on each iteration if tokens use `reparse`
         while (pos < appliedPattern.length) {
             do {
-                // Check for custom tokens at the current position
+                // Checks for custom tokens at the current position
                 result = runTokens(appliedPattern, appliedFlags, pos, scope, context);
                 // If the matched token used the `reparse` option, splice its output into the
                 // pattern before running tokens again at the same position

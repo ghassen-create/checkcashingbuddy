@@ -1,5 +1,5 @@
 import React from 'react';
-import PasswordResetForm from 'components/authentication/PasswordResetForm';
+import PasswordResetForm from '../PasswordResetForm';
 import AuthCardLayout from 'layouts/AuthCardLayout';
 
 const PasswordReset = () => {

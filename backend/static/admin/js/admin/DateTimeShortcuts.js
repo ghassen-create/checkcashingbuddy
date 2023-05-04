@@ -67,7 +67,7 @@
                 return;
             }
 
-            // Check if warning is already there.
+            // Checks if warning is already there.
             if (inp.parentNode.querySelectorAll('.' + warningClass).length) {
                 return;
             }

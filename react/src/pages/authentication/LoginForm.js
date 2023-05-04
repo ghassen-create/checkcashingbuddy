@@ -78,7 +78,7 @@ const LoginForm = ({ hasLabel, layout }) => {
         <Col xs="auto">
           <Link
             className="fs--1 mb-0"
-            to={`/authentication/${layout}/forgot-password`}
+            to={`/forgot-password`}
           >
             Forgot Password?
           </Link>

@@ -36,30 +36,30 @@ export const reports = {
   ],
   customerSatisfaction: [
     {
-      title: 'Analysis of the Top Customers',
-      description: 'Check out our customer stories',
+      title: 'Analysis of the Top Store',
+      description: 'Checks out our customer stories',
       img: img3
     },
     {
       title: 'Customer Satisfaction Survey',
-      description: 'Check out the report details',
+      description: 'Checks out the report details',
       img: img4
     }
   ],
   productivity: [
     {
       title: 'Performance of Agents',
-      description: 'Check out the report details',
+      description: 'Checks out the report details',
       img: img5
     },
     {
       title: 'Performance in a Group',
-      description: 'Check out the report details',
+      description: 'Checks out the report details',
       img: img6
     },
     {
       title: 'Distribution of Performance',
-      description: 'Check out the report details',
+      description: 'Checks out the report details',
       img: img7
     }
   ]

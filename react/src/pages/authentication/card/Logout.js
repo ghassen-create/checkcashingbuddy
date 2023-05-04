@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoutContent from 'components/authentication/LogoutContent';
+import LogoutContent from '../LogoutContent';
 
 import AuthCardLayout from 'layouts/AuthCardLayout';
 

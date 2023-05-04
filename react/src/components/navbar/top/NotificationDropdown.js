@@ -7,10 +7,8 @@ import {
   rawEarlierNotifications,
   rawNewNotifications
 } from 'data/notification/notification';
-import { isIterableArray } from 'helpers/utils';
 import useFakeFetch from 'hooks/useFakeFetch';
 import FalconCardHeader from 'components/common/FalconCardHeader';
-import Notification from 'components/notification/Notification';
 
 const NotificationDropdown = () => {
   // State
@@ -90,19 +88,8 @@ const NotificationDropdown = () => {
             style={{ maxHeight: '19rem' }}
           >
             <div className="list-group-title">NEW</div>{' '}
-            {isIterableArray(newNotifications) &&
-              newNotifications.map(notification => (
-                <ListGroup.Item key={notification.id} onClick={handleToggle}>
-                  <Notification {...notification} flush />
-                </ListGroup.Item>
-              ))}
+
             <div className="list-group-title">EARLIER</div>
-            {isIterableArray(earlierNotifications) &&
-              earlierNotifications.map(notification => (
-                <ListGroup.Item key={notification.id} onClick={handleToggle}>
-                  <Notification {...notification} flush />
-                </ListGroup.Item>
-              ))}
           </ListGroup>
           <div
             className="card-footer text-center border-top"

@@ -119,7 +119,8 @@ const NavbarTopElements = ({
 
       <Logo at="navbar-top" width={40} id="topLogo" />
 
-      {navbarPosition === 'top' || navbarPosition === 'combo' ? (
+      {/* eslint-disable-next-line no-mixed-operators */}
+      {navbarPosition === 'top' || navbarPosition === 'combo' && (
         <Navbar.Collapse
           in={navbarCollapsed}
           className="scrollbar pb-3 pb-lg-0"
@@ -128,16 +129,6 @@ const NavbarTopElements = ({
             <NavbarTopDropDownMenus />
           </Nav>
         </Navbar.Collapse>
-      ) : (
-        <Nav
-          navbar
-          className={`align-items-center d-none d-${topNavbarBreakpoint}-block`}
-          as="ul"
-        >
-          <Nav.Item as="li">
-            <SearchBox autoCompleteItem={autoCompleteInitialItem} />
-          </Nav.Item>
-        </Nav>
       )}
       <TopNavRightSideNavItem />
     </>

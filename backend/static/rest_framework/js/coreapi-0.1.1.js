@@ -676,7 +676,7 @@ var HTTPTransport = function () {
         }
       }
 
-      // Check for any parameters that did not have a matching field
+      // Checks for any parameters that did not have a matching field
       for (var property in params) {
         if (params.hasOwnProperty(property) && !fieldNames.includes(property)) {
           throw new errors.ParameterError('Unknown parameter: "' + property + '"');
@@ -937,7 +937,7 @@ exports.parse = querystring;
 'use strict';
 
 /**
- * Check if we're required to add a port number.
+ * Checks if we're required to add a port number.
  *
  * @see https://url.spec.whatwg.org/#default-port
  * @param {Number|String} port Port number we need to check
