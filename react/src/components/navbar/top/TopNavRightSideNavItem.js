@@ -1,11 +1,8 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import CartNotification from 'components/navbar/top/CartNotification';
-import NotificationDropdown from 'components/navbar/top/NotificationDropdown';
 import ProfileDropdown from 'components/navbar/top/ProfileDropdown';
 import AppContext from 'context/Context';
 import React, {useContext} from 'react';
 import {Nav, OverlayTrigger, Tooltip} from 'react-bootstrap';
-import NineDotMenu from './NineDotMenu';
 import SearchBox from "./SearchBox";
 import autoCompleteInitialItem from "../../../data/autocomplete/autocomplete";
 
