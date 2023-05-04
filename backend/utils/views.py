@@ -4,7 +4,7 @@ from django.db.models import Q
 
 from report.models import Report
 
-from customer.models import Avatar, DriverLicence, Note, Customer
+from customer.models import CustomerAvatar, CustomerDriverLicence, CustomerNote, Customer
 
 from store.models import Store
 
@@ -34,7 +34,7 @@ def filter_user_restrictions(queryset, user):
             queryset = queryset.filter(
                 Q(store_id=user.store_id)
             )
-    if queryset.model is Avatar or queryset.model is Note or queryset.model is DriverLicence:
+    if queryset.model is CustomerAvatar or queryset.model is CustomerNote or queryset.model is CustomerDriverLicence:
         if user.store_id and settings.ADMIN_GROUP_NAME not in [obj.name for obj in user.groups.all()]:
             queryset = queryset.filter(
                 Q(customer__storecustomer__store_id=user.store_id)

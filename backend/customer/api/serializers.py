@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from customer.models import Avatar, Note, DriverLicence, Customer
+from customer.models import CustomerAvatar, CustomerNote, CustomerDriverLicence, Customer
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class AvatarSerializer(serializers.ModelSerializer):
     customer_name = serializers.SerializerMethodField()
 
     class Meta:
-        model = Avatar
+        model = CustomerAvatar
         fields = "__all__"
 
     @staticmethod
@@ -48,7 +48,7 @@ class NoteSerializer(serializers.ModelSerializer):
     customer_name = serializers.SerializerMethodField()
 
     class Meta:
-        model = Note
+        model = CustomerNote
         fields = "__all__"
 
     @staticmethod
@@ -70,7 +70,7 @@ class DriverLicenceSerializer(serializers.ModelSerializer):
     customer_name = serializers.SerializerMethodField()
 
     class Meta:
-        model = DriverLicence
+        model = CustomerDriverLicence
         fields = "__all__"
 
     @staticmethod

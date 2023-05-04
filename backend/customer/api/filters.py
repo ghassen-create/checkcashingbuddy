@@ -1,6 +1,6 @@
 import django_filters
 
-from customer.models import Avatar, Note, DriverLicence, Customer
+from customer.models import CustomerAvatar, CustomerNote, CustomerDriverLicence, Customer
 
 
 class CustomerFilter(django_filters.FilterSet):
@@ -17,7 +17,7 @@ class AvatarFilter(django_filters.FilterSet):
     customer_id = django_filters.NumberFilter(field_name="customer_id")
 
     class Meta:
-        model = Avatar
+        model = CustomerAvatar
         fields = ["customer_id"]
 
 
@@ -25,13 +25,13 @@ class NoteFilter(django_filters.FilterSet):
     customer_id = django_filters.NumberFilter(field_name="customer_id")
 
     class Meta:
-        model = Note
+        model = CustomerNote
         fields = ["customer_id"]
 
 
-class DLFilter(django_filters.FilterSet):
-    customer_id = django_filters.NumberFilter(field_name="customer_id")
+class DriverLicenceFilter(django_filters.FilterSet):
+    customer_id = django_filters.NumberFilter(field_name='customer_id')
 
     class Meta:
-        model = DriverLicence
+        model = CustomerDriverLicence
         fields = ["customer_id"]

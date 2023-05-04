@@ -23,7 +23,7 @@ class Customer(models.Model):
         return self.name
 
 
-class Avatar(models.Model):
+class CustomerAvatar(models.Model):
     avatar = models.ImageField(upload_to="avatar", null=True, blank=True, default=None)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     current = models.BooleanField(default=True)
@@ -46,7 +46,7 @@ class Avatar(models.Model):
         return f"{self.customer.name} avatar" if self.customer else f"avatar {self.id}"
 
 
-class Note(models.Model):
+class CustomerNote(models.Model):
     description = models.TextField()
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     last = models.BooleanField(default=True)
@@ -69,10 +69,8 @@ class Note(models.Model):
         return f"{self.customer.name} note" if self.customer else f"note {self.id}"
 
 
-class DriverLicence(models.Model):
-    image = models.ImageField(
-        upload_to="passports", null=True, blank=True, default=None
-    )
+class CustomerDriverLicence(models.Model):
+    image = models.ImageField(upload_to="passports", null=True, blank=True, default=None)
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     current = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -91,8 +89,4 @@ class DriverLicence(models.Model):
         return self.customer.name if self.customer else ""
 
     def __str__(self):
-        return (
-            f"{self.customer.name} passport/DL"
-            if self.customer
-            else f"passport {self.id}"
-        )
+        return f"{self.customer.name} passport/DL" if self.customer else f"passport {self.id}"
